@@ -1,7 +1,7 @@
-diff --git a/tests/tst/tb_TopLevel.vhd b/tests/tst/tb_TopLevel.vhd
+diff --git a/testes/tb_TopLevel.vhd b/testes/tb_TopLevel.vhd
 index 74f4d44..5382dd7 100644
---- a/tests/tst/tb_TopLevel.vhd
-+++ b/tests/tst/tb_TopLevel.vhd
+--- a/testes/tb_TopLevel.vhd
++++ b/testes/tb_TopLevel.vhd
 @@ -39,6 +39,17 @@ begin
        wait until clk'event and clk='0';
        assert(o = x"0001")  report "Falha" severity error;
