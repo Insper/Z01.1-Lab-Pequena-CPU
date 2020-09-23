@@ -22,11 +22,12 @@ class tstLab10(object):
     def __init__(self):
         self.pwd = os.path.dirname(os.path.abspath(__file__))
         self.rtl = self.pwd+'/src/'
-        self.tst = os.path.join(self.pwd,'tests/')
+        self.tst = os.path.join(self.pwd,'')
         self.log = os.path.join(TOOL_PATH,'log','logC.xml')
         self.work = vhdlScript(self.log)
 
     def addSrc(self, work):
+        print(self.rtl)
         work.addSrc(self.rtl)
 
     def addTst(self, work):
@@ -40,7 +41,6 @@ class tstLab10(object):
 if __name__ == "__main__":
 
     ## Init ALU
-    tstLab10 = tstLab10()
-    tstLab10.add(tstLab10.work)
-    tstLab10.work.run()
-
+    tstLab = tstLab10()
+    tstLab.add(tstLab.work)
+    tstLab.work.run()
