@@ -1,4 +1,4 @@
-# LAB 10 - Elementos 2020
+# Elementos - Lab - Pequena CPU
 
 ![](ula-aplicada.svg)
 
@@ -20,5 +20,3 @@ Linguagem de máquina
 | `1001`               | `REG_C` = `REG_C` + 1   | add 1,C |
 | `1010`               | `REG_C` = `REG_C` + `Y` | add Y,C |
 | `1011`               | `REG_C` = `REG_C` - 1   | sub 1,C |
-
-
