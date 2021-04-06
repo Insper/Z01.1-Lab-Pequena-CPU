@@ -18,23 +18,28 @@ end entity;
 
 architecture rtl of TopLevel is
 
-  signal reg : std_logic_vector(15 downto 0) := x"0073"; -- 115
-  signal saida : std_logic_vector(15 downto 0) := x"005F"; -- 95
+  signal reg :  std_logic_vector(15 downto 0) := x"0073"; -- 115
+  signal saida: std_logic_vector(15 downto 0) := x"005F"; -- 95
   signal op_c : std_logic_vector(3 downto 0);
   signal ula_c: std_logic_vector(5 downto 0);
+  signal ng, zr, en : std_logic;
 
   component reg_c is
     port (
       d  : in  STD_LOGIC_VECTOR(15 downto 0);
       q  : out STD_LOGIC_VECTOR(15 downto 0);
+      en : in  std_logic;
       clk: in  std_logic
     );
   end component;
 
   component controlUnit is
     port (
-      op:  in STD_LOGIC_VECTOR(3 downto 0);
-      ula: out STD_LOGIC_VECTOR(5 downto 0)
+      op:   in  STD_LOGIC_VECTOR(3 downto 0);
+      en:   out std_logic;
+      ng:   in  std_logic;
+      zr:   in  std_logic;
+      ula:  out STD_LOGIC_VECTOR(5 downto 0)
     );
   end component;
 
@@ -59,17 +64,17 @@ architecture rtl of TopLevel is
     clk: in std_logic
 	);
 	end component;
-  
+
 begin
 
   u1 : alu port map(reg, user_in,
                     ula_c(5), ula_c(4), ula_c(3), ula_c(2), ula_c(1), ula_c(0),
-                    open, open,
+                    ng, zr,
                     saida);
 
-  u2 : controlUnit port map(op_c, ula_c);
+  u2 : controlUnit port map(op_c, en, ng, zr, ula_c);
 
-  u3: reg_c port map(saida, reg, clk);
+  u3: reg_c port map(saida, reg, en, clk);
 
   u4: mem port map(op_c, clk);
   
